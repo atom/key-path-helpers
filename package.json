@@ -1,6 +1,6 @@
 {
   "name": "key-path-helpers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Functions for working with key paths",
   "main": "./lib/key-path-helpers",
   "scripts": {
@@ -20,8 +20,7 @@
       "url": "http://github.com/atom/key-path-helpers/raw/master/LICENSE.md"
     }
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "coffee-script": "^1.7.0",
     "jasmine-focused": "^1.0.4",
