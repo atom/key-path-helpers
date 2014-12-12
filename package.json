@@ -1,6 +1,6 @@
 {
   "name": "key-path-helpers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Functions for working with key paths",
   "main": "./lib/key-path-helpers",
   "scripts": {
