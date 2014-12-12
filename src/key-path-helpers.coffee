@@ -6,6 +6,8 @@ hasKeyPath = (object, keyPath) ->
   true
 
 getValueAtKeyPath = (object, keyPath) ->
+  return object unless keyPath
+
   keys = splitKeyPath(keyPath)
   for key in keys
     object = object[key]

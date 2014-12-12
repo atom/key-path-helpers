@@ -17,6 +17,9 @@ describe "getValueAtKeyPath(object, keyPath)", ->
     expect(getValueAtKeyPath(object, 'a.x')).toBeUndefined()
     expect(getValueAtKeyPath(object, 'a.d')).toBeNull()
     expect(getValueAtKeyPath(object, 'a.d.e')).toBeNull()
+    expect(getValueAtKeyPath(object, '')).toBe object
+    expect(getValueAtKeyPath(object, null)).toBe object
+    expect(getValueAtKeyPath(object, undefined)).toBe object
 
 describe "setValueAtKeyPath(object, keyPath)", ->
   it "sets the value at the given key path, creating intermediate objects if necessary", ->
