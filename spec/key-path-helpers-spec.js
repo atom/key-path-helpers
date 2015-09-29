@@ -3,6 +3,7 @@ const hasKeyPath = helpers.hasKeyPath
 const getValueAtKeyPath = helpers.getValueAtKeyPath
 const setValueAtKeyPath = helpers.setValueAtKeyPath
 const splitKeyPath = helpers.splitKeyPath
+const pushKeyPath = helpers.pushKeyPath
 
 describe("hasKeyPath(object, keyPath)", function () {
   it("determines whether or not the given key path exists", function () {
@@ -73,5 +74,20 @@ describe("splitKeyPath(keyPath)", function () {
   it("splits key paths on . characters, unless they're escaped", function () {
     expect(splitKeyPath('a.b.c')).toEqual(['a', 'b', 'c'])
     expect(splitKeyPath('a\\.b.c\\.d.efg')).toEqual(['a.b', 'c.d', 'efg'])
+  })
+})
+
+describe("pushKeyPath(keyPath, key)", function () {
+  it("adds the given key to the key-path", function () {
+    expect(pushKeyPath('a.b', 'c')).toEqual('a.b.c')
+    expect(pushKeyPath('a.b', 'c.d')).toEqual('a.b.c\\.d')
+
+    expect(splitKeyPath(pushKeyPath(
+      'a',
+      'c.d'
+    ))).toEqual([
+      'a',
+      'c.d'
+    ])
   })
 })
