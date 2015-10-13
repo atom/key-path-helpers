@@ -4,6 +4,7 @@ const getValueAtKeyPath = helpers.getValueAtKeyPath
 const setValueAtKeyPath = helpers.setValueAtKeyPath
 const splitKeyPath = helpers.splitKeyPath
 const pushKeyPath = helpers.pushKeyPath
+const deleteValueAtKeyPath = helpers.deleteValueAtKeyPath
 
 describe("hasKeyPath(object, keyPath)", function () {
   it("determines whether or not the given key path exists", function () {
@@ -48,7 +49,7 @@ describe("getValueAtKeyPath(object, keyPath)", function () {
   })
 })
 
-describe("setValueAtKeyPath(object, keyPath)", function () {
+describe("setValueAtKeyPath(object, keyPath, value)", function () {
   it("sets the value at the given key path, creating intermediate objects if necessary", function () {
     const object = {}
 
@@ -67,6 +68,49 @@ describe("setValueAtKeyPath(object, keyPath)", function () {
         f: null
       }
     })
+  })
+})
+
+describe("deleteValueAtKeyPath(object, keyPath)", function() {
+  it("deletes the given key-path", function () {
+    const object = {
+      a: {
+        b: {
+          c: 1,
+          d: 2
+        }
+      }
+    };
+
+    deleteValueAtKeyPath(object, 'a.b.c')
+    expect(object).toEqual({
+      a: {
+        b: {
+          d: 2
+        }
+      }
+    });
+
+    deleteValueAtKeyPath(object, 'a.b.x.y')
+    expect(object).toEqual({
+      a: {
+        b: {
+          d: 2
+        }
+      }
+    });
+
+    deleteValueAtKeyPath(object, 'a.b.d')
+    expect(object).toEqual({
+      a: {
+        b: {}
+      }
+    });
+
+    deleteValueAtKeyPath(object, 'a.b')
+    expect(object).toEqual({
+      a: {}
+    });
   })
 })
 
